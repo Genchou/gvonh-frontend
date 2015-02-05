@@ -1,0 +1,98 @@
+<!-- OPTIONS BUTTONS -->
+<div class="row">
+	<div class="col-xs-12">
+		<div class="panel gray panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-6">
+						<button type="button" class="btn btn-primary btn-block" ng-click="loadData()">
+							<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh
+						</button>
+					</div>
+					<div class="col-xs-6">
+						<button type="button" href="#" class="btn btn-default btn-block" data-toggle="modal" data-target="#delete_confirm_modal">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete all data
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="delete_confirm_modal" tabindex="-1" role="dialog" aria-labelledby="myModelLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4>Are you sure about that ?</h4>
+			</div>
+			<div class="modal-body">
+				<p>Doing that will permanently delete all the data you saved. There will be no way to retrieve them after that.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteAll()">Yes</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="panel gray panel-default clearfix">
+	<div class="panel-body">
+		<!-- ADD FORM -->
+		<form ng-submit="addSalary()">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-12 col-md-4">
+						<label for="untaxed">Untaxed salary</label>
+						<input type="text" id="untaxed" ng-model="salaryUntaxed" class="form-control" placeholder="Salaire brut" required="required" tabindex="1"/>
+					</div>
+					<div class="col-xs-12 col-md-4">
+						<label for="taxed">Taxed salary</label>
+						<input type="text" id="taxed" ng-model="salaryTaxed" class="form-control" placeholder="Salaire net" required="required"  tabindex="2"/>
+					</div>
+					<div class="col-xs-12 col-md-4">
+						<label for="datepicker">Date</label>
+						<input type="text" ng-model="salaryDate" class="form-control" required="required" id="datepicker" placeholder="Date"  tabindex="3"/>
+					</div>
+				</div>
+			</div>
+			<input class="btn btn-primary pull-right" type="submit" value="Add" />
+		</form>
+		<!-- GRAPH -->
+		<div class="row">
+			<div class="col-xs-12">
+				<div id="salaries-chart"></div>
+			</div>
+		</div>
+		<div class="hide" id="chart-data">
+			<span>untaxed, taxed</span>
+			<span ng-repeat="salary in salaries">{{ salary.untaxed }}, {{ salary.untaxed }}</span>
+		</div>
+		<!-- DATA LIST -->
+		<div class="row">
+			<div class="col-xs-12">
+				<span>{{ salaries.length }} salaries (totals : {{ total().untaxed }} - {{ total().taxed }})</span>
+				<ul>
+					<li ng-repeat="salary in salaries">
+						<!-- <input type="checkbox" ng-model="salary.payed" /> -->
+						<span id="{{ salary.id }}"><span>{{ salary.date }}</span>: <span>{{ salary.untaxed }}</span> - <span>{{ salary.taxed }}</span></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery("#datepicker").datepicker({
+			showWeek: true,
+			firstDay: 1,
+			changeMonth: true,
+			changeYear: true
+		});
+		jQuery("#datepicker").datepicker("option", "dateFormat", "dd-mm-yy");
+	});
+</script>

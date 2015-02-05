@@ -1,0 +1,60 @@
+<!-- OPTIONS BUTTONS -->
+<div class="row">
+	<div class="col-xs-12">
+		<div class="panel gray panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-6">
+						<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#load_modal">
+							<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Load
+						</button>
+					</div>
+					<div class="col-xs-6">
+						<button type="button" href="#" class="btn btn-default btn-block" disabled="disabled">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Clear
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- LOAD MODAL -->
+<div class="modal fade" id="load_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Load your data</h4>
+			</div>
+			<div class="modal-body">
+				<label for="load_user">Username</label>
+				<input type="text" id="load_user" class="form-control" placeholder="Username" ng-model="username" ng-change="updateUrl()">
+				<label for="load_token">Token</label>
+				<input type="text" id="load_token" class="form-control" placeholder="Paste your token here" ng-model="token" ng-change="updateUrl()">
+			</div>
+			<div class="modal-footer">
+				<p>
+					<button type="button" class="btn btn-primary btn-lg" data-dismiss="modal" ng-click="loadData()">Load</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				</p>
+				<div class="well hidden" id="loadUrl">
+					<p>In the future, you will be able to access your data by pasting this URL in your browser. Bookmarking it would be a good idea !</p>
+					<input type="text" class="form-control" value="" ng-model="loadUrl">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<div class="panel gray panel-default">
+			<div class="panel-body">
+				<h3>Welcome in this salary app</h3>
+				<p>Start by loading your data with the "Load" button up there.</p>
+			</div>
+		</div>
+	</div>
+</div> 

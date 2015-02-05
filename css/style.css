@@ -1,0 +1,11 @@
+body {
+	/*background-image: url("../img/dsotm.png") !important;
+	background-attachment: fixed !important;
+	background-color: #E6E6E6 !important;
+	background-position: center center;*/
+	background-color: #1d1d1d !important;
+}
+.panel.gray {
+	border-color: #C7C7C7;
+	background-color: #E8E8E8;
+}
